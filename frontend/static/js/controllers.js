@@ -3,15 +3,29 @@ var Ordr = angular.module('Ordr',[]);
 
 var OrdrController = Ordr.controller('OrdrController', ['$scope', 'OrdrService', function ($scope, OrdrService) {
 // var OrdrController = Ordr.controller('OrdrController', function ($scope) {
-	
+	$scope.tableID = "Yos";
 	OrdrService.getMenu(function(data) {
 		$scope.menuData = data.menu;
-		// console.log($scope.data)
 	});
 
 }]);
-// });
 
+var LandingController = Ordr.controller('LandingController', ['$scope', 'StorageService',
+    function ($scope, StorageService) {
+        $scope.tableID = StorageService.tableID;
+        $scope.submit = function () {
+            StorageService.tableID = $scope.tableID;
+            console.log("Submitted: " + StorageService.tableID)
+        }
+        console.log($scope.tableID);
+    }]);
+
+var StorageService = Ordr.factory('StorageService', function () {
+    var tableID = null;
+    return {
+        'tableID': tableID
+    };
+});
 var OrdrService = Ordr.factory('OrdrService', ['$http', function($http) {
 
 	function getMenu(callBackFunc) {
