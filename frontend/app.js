@@ -15,7 +15,7 @@
           templateUrl: 'partials/page1.html'
         })
         .when('/page1/:name', {
-          controller: 'Page1Ctrl',
+          controller: 'MenuCtrl',
           templateUrl: 'partials/page1.html'
         })
         .when('/page2', {
@@ -30,12 +30,25 @@
         }]);
 
   angular.module('routingApp')
-    .controller('SplashCtrl', ['$scope', function ($scope) {
-        
+    .controller('SplashCtrl', ['$scope', '$location', 'StorageService',
+      function ($scope, $location, StorageService) {
+        $scope.tableID = StorageService.getTableID();
+
+        $scope.submit = function () {
+            StorageService.setTableID($scope.tableID);
+            
+            console.log("Submitted: " + StorageService.getTableID());
+
+            $location.path('/menu');
+        }
         }])
-    .controller('Page1Ctrl', ['$scope', '$routeParams', function ($scope, $routeParams) {
-      $scope.name = $routeParams.name;
-       
+    .controller('MenuCtrl', ['$scope', 'OrdrService', 'StorageService',
+       function ($scope, OrdrService, StorageService) {
+        $scope.tableID = StorageService.getTableID();
+        OrdrService.getMenu(function(data) {
+          $scope.menuData = data.menu;
+        });
+
         }])
     .controller('Page2Ctrl', ['$scope', function ($scope) {
         
@@ -43,5 +56,42 @@
     .controller('Page3Ctrl', ['$scope', function ($scope) {
         
         }])
+
+  angular.module('routingApp')
+    .factory('OrdrService', ['$http', function($http) {
+
+      function getMenu(callBackFunc) {
+        console.log("Call Starting")
+            $http({
+                method: 'GET',
+                url: 'http://172.17.34.204:4000/api/getMenu/11',
+            }).
+                    success(function(data) {
+                         //this is the key
+                         console.log(data)
+                         callBackFunc(data);
+                    }).
+                    error(function(data, response) {
+                        console.log(response + " " + data);
+                    });
+            }
+
+      return {
+              getMenu:getMenu
+             }
+      }])
+    .factory('StorageService', function () {
+        var tableID = 'Inital';
+        function setTableID(value) {
+            tableID = value;
+        }
+        function getTableID() {
+            return tableID;
+        }
+        return {
+            getTableID: getTableID,
+            setTableID: setTableID
+        };
+      })
 
 }());
