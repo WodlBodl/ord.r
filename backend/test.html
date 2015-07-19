@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+  <title>Pusher Test</title>
+  <script src="https://js.pusher.com/2.2/pusher.min.js"></script>
+  <script>
+
+    //private channel
+    var pusher = new Pusher('3e537abd69de47be577d',{encrypted: true , authEndpoint: 'http://127.0.0.1:4000/pusher/auth'});
+
+
+
+    var privateChannel = 'private-'
+
+    // need to loop this for each channel, as each event needs to be binded to their channel
+    var channel = pusher.subscribe(privateChannel.concat(tableId));
+    channel.bind('assistance', function(data) {
+      //Your Code here, You recieve all the data that being message
+      console.log(data);
+    });
+
+    channel.bind('assitanceResponse', function(data){
+      //Your Code here, You recieve all the data that being message
+    });
+
+
+  </script>
+</head>
