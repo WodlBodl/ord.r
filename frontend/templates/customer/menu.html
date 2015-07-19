@@ -1,4 +1,6 @@
- <html ng-app="Ordr">
+{% extends "/customer/base.html" %}
+{% block content %}
+<html ng-app="Ordr">
 <html>
 <head>
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js">
@@ -9,13 +11,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="{{ url_for('static', 
+    <link rel="stylesheet" href="{{ url_for('static',
     filename='css/bootstrap.min.css') }}" >
 
       <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <link rel="stylesheet" href="{{ url_for('static', 
+    <link rel="stylesheet" href="{{ url_for('static',
     filename='css/custom.css') }}">
 
     <script type="text/javascript" src="{{ url_for('static',
@@ -24,14 +26,16 @@
 	<title>Title</title>
 </head>
 	<body>
-		<div ng-app="Ordr" ng-controller="OrdrController">
-			<div>
-				{{tableID|angular}}
-			</div>
-			<div ng-repeat="choice in menuData">
-				{{choice.name|angular}} ----  {{choice.price|angular}}
-				<img ng-src="{{choice.imgPath}}">
-			</div>
-		</div>
+    <div class="container">
+      <div class="row">
+    		<div ng-app="Ordr" ng-controller="OrdrController">
+    			<div ng-repeat="choice in menuData">
+    				{{choice.name|angular}} ----  {{choice.price|angular}}
+    				<img ng-src="{{choice.imgPath}}">
+    			</div>
+    		</div>
+      </div>
+    </div>
 	</body>
 </html>
+{% endblock %}

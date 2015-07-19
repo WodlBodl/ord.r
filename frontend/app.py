@@ -4,8 +4,13 @@ app = Flask(__name__)
 Triangle(app)
 
 @app.route('/')
-def hello_world():
+def landing_page():
     return render_template('landing_page.html')
+
+@app.route('/menu')
+def menu():
+    return render_template('customer/menu.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
