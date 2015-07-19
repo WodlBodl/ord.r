@@ -25,6 +25,9 @@
 </head>
 	<body>
 		<div ng-app="Ordr" ng-controller="OrdrController">
+			<div>
+				{{tableID|angular}}
+			</div>
 			<div ng-repeat="choice in menuData">
 				{{choice.name|angular}} ----  {{choice.price|angular}}
 				<img ng-src="{{choice.imgPath}}">
