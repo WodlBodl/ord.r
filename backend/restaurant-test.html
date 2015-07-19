@@ -4,13 +4,10 @@
   <script src="https://js.pusher.com/2.2/pusher.min.js"></script>
   <script>
 
-    //private channel
-    var pusher = new Pusher('3e537abd69de47be577d',{encrypted: true , authEndpoint: 'http://127.0.0.1:4000/pusher/auth_presence'});
+    var restaurant = new Pusher('3e537abd69de47be577d',{encrypted: true , authEndpoint: 'http://127.0.0.1:4000/pusher/auth_restaurant'});
 
-    var presenceChannel = 'presence-'
-
-    // need to loop this for each channel, as each event needs to be binded to their channel
-    var channel = pusher.subscribe(presenceChannel.concat(tableId));
+    var restaurantId = 'private-restaurant-233654524632'
+    var channel = restaurant.subscribe(restaurantId);
     channel.bind('assistance', function(data) {
       //Your Code here, You recieve all the data that being message
       console.log(data);
