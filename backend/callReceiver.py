@@ -25,6 +25,7 @@ p = Pusher(
 @app.route('/api/table/new', methods=['POST'])
 def makeNewTable():
 	tableNumber = request.form['number']
+	print tableNumber
 	tableId = restaurant.makeNewTable(tableNumber)
 	return tableId
 
@@ -50,12 +51,7 @@ def placeOrder():
 	order = table['order']
 	triggers.triggerOrderNotification(tableId, order)
 	return {'confirmation': confirmation}
-
-@app.route('/api/table/pay/<tableId>/<userId>', methods=['GET'])
-def pay(tableId, userId):
-	totalBill = getUserBill(tableId, userId)
-	return jsonify({'cost': str(totalBill)})
-
+	
 @app.route("/pusher/auth_presence", methods=['POST'])
 def pusher_authenticationPresence():
 	tableId = request.form['channel_name'].split('-')[-1]
@@ -94,6 +90,16 @@ def pusher_triggerAssistance(tableId):
 def pusher_triggerAssistanceResponse(tableId):
 	triggers.triggerAssitanceResponse(tableId)
 	return jsonify({'status': 'done'})
+
+@app.route('/api/table/pay/<tableId>/<userId>', methods=['GET'])
+def pay(tableId, userId):
+	totalBill = getUserBill(tableId, userId)
+	table = np.load(restaurant.tablesDirectory + tableId + '.npy')
+	table = table[0]
+	table['status'] = 'closed'
+	np.save(restaurant.tablesDirectory + tableId, [table])
+	triggers.triggerPayment(tableId, order)
+	return jsonify({'cost': str(totalBill)})
 
 # channels = pusher.channels_info(u"presence-", [u'user_count'])
 # #=> {u'channels': {u'presence-chatroom': {u'user_count': 2}, u'presence-notifications': {u'user_count': 1}}}

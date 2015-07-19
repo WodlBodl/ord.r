@@ -1,15 +1,15 @@
 breakfast = [
-	{'name':'Muffin', 'price':'$1.50', 'ingredients':'Flour, Blueberries, Love'},
-	{'name':'Cereal', 'price':'$2.00', 'ingredients':'Grain, Milk, Sugar'},
-	{'name':'Coffee', 'price':'$1.00', 'ingredients':'Caffeine, Unicorn Tears'}
+	{'name':'Muffin', 'price':'$1.50', 'ingredients':'Flour, Blueberries, Love', 'quantity':0},
+	{'name':'Cereal', 'price':'$2.00', 'ingredients':'Grain, Milk, Sugar', 'quantity':0},
+	{'name':'Coffee', 'price':'$1.00', 'ingredients':'Caffeine, Unicorn Tears', 'quantity':0}
 ]
 lunch = [
-	{'name':'Muffin', 'price':'$1.50', 'ingredients':'Flour, Blueberries, Love'},
-	{'name':'Cereal', 'price':'$2.00', 'ingredients':'Grain, Milk, Sugar'},
-	{'name':'Coffee', 'price':'$1.00', 'ingredients':'Caffeine, Unicorn Tears'}
+	{'name':'Muffin', 'price':'$1.50', 'ingredients':'Flour, Blueberries, Love', 'quantity':0},
+	{'name':'Cereal', 'price':'$2.00', 'ingredients':'Grain, Milk, Sugar', 'quantity':0},
+	{'name':'Coffee', 'price':'$1.00', 'ingredients':'Caffeine, Unicorn Tears', 'quantity':0}
 ]
 dinner = [
-	{'name':'Muffin', 'price':'$1.50', 'ingredients':'Flour, Blueberries, Love'},
-	{'name':'Cereal', 'price':'$2.00', 'ingredients':'Grain, Milk, Sugar'},
-	{'name':'Coffee', 'price':'$1.00', 'ingredients':'Caffeine, Unicorn Tears'}
+	{'name':'Muffin', 'price':'$1.50', 'ingredients':'Flour, Blueberries, Love', 'quantity':0},
+	{'name':'Cereal', 'price':'$2.00', 'ingredients':'Grain, Milk, Sugar', 'quantity':0},
+	{'name':'Coffee', 'price':'$1.00', 'ingredients':'Caffeine, Unicorn Tears', 'quantity':0}
 ]
