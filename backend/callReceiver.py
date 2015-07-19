@@ -54,6 +54,11 @@ def placeOrder():
 @app.route('/api/table/pay/<tableId>/<userId>', methods=['GET'])
 def pay(tableId, userId):
 	totalBill = getUserBill(tableId, userId)
+	table = np.load(restaurant.tablesDirectory + tableId + '.npy')
+	table = table[0]
+	table['status'] = 'closed'
+	np.save(restaurant.tablesDirectory + tableId, [table])
+	triggers.triggerPayment(tableId, order)
 	return jsonify({'cost': str(totalBill)})
 
 @app.route("/pusher/auth_presence", methods=['POST'])
