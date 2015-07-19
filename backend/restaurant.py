@@ -2,15 +2,35 @@ import time
 import numpy as np
 import os
 import menus
+import triggers
 
 tablesDirectory = 'tables/'
+if not os.path.exists(tablesDirectory):
+	os.makedirs(tablesDirectory)
+
+restaurantId = 'private-restaurant-233654524632'
 
 def makeNewTable(tableNumber):
+	tableList = []
+	for (dirpath, dirnames, filenames) in os.walk(tablesDirectory):
+		tableList.extend(filenames)
+
+	for filename in tableList:
+		table = np.load(tablesDirectory + filename)
+		table = table[0]
+		if (table['number'] == tableNumber) and (table['status'] == 'open'):
+			print table
+			return filename[:-4]
+
 	tableId = str(int(time.time()))
 	table = {
-		'number' : tableNumber
+		'number' : tableNumber,
+		'users': [],
+		'order': [],
+		'status': 'open'
 	}
-	np.save('tables/' + str(tableId), [table])
+	np.save(tablesDirectory + str(tableId), [table])
+	print table
 	return tableId
 
 def getMenu(timeOfDay):
@@ -25,6 +45,19 @@ def getMenu(timeOfDay):
 	elif 18 <= timeOfDay:
 		return menus.dinner
 
-def placeOrder(tableId, order):
+def addOrder(tableId, order):
 	table = np.load(tablesDirectory + tableId + '.npy')
 	table = table[0]
+	table['order'].append(order)
+	np.save(tablesDirectory + tableId, [table])
+
+def getUserBill(tableId, userId):
+	cost = 0
+	table = np.load(tablesDirectory + tableId + '.npy')
+	table = table[0]
+	order = table['order'][int(userId)]
+
+	for item in order:
+		cost += float(item['price'][1:])
+
+	return cost
