@@ -49,7 +49,9 @@ def addOrder(tableId, order):
 	table = np.load(tablesDirectory + tableId + '.npy')
 	table = table[0]
 	table['order'].append(order)
+	print 'got table'
 	np.save(tablesDirectory + tableId, [table])
+	return {'confirmation': 'done'}
 
 def getUserBill(tableId, userId):
 	cost = 0

@@ -1,5 +1,6 @@
 import callReceiver as cr
 import restaurant
+import json
 
 
 # Table#1 channel, event is assistance. message "Awaiting Response ..."
@@ -11,7 +12,7 @@ def triggerAssitance(tableId, tableNumber):
     )
     #message to the restaurant
     cr.p.trigger(restaurant.restaurantId, 'assistance', {
-        'message':  tableNumber + 'requires assitance'
+        'message':  tableNumber + ' requires assitance'
         }
     )
 
@@ -23,13 +24,10 @@ def triggerAssitanceResponse(tableId):
     )
 
 def triggerOrderNotification(tableId, order):
-    cr.p.trigger(tableId, 'orderNotification', {
-        'message': 'Order received'
-        }
-    )
-    cr.p.trigger(restaurant.restaurantId,'orderNotification', {
-        'message': order
-    })
+    for obj in order:
+        sendString = json.dumps(obj)
+        print type(sendString)
+        cr.p.trigger(restaurant.restaurantId, 'orderNotification', sendString)
     return 'ok'
 
 def triggerPayment(tableId, order):

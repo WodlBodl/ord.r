@@ -13,6 +13,11 @@
       console.log(data);
     });
 
+    channel.bind('orderNotification', function(data) {
+      //Your Code here, You recieve all the data that being message
+      console.log(data);
+    });
+
     channel.bind('assitanceResponse', function(data){
       //Your Code here, You recieve all the data that being message
     });

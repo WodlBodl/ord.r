@@ -39,19 +39,27 @@ def getMenu(timeOfDay):
 @app.route('/api/table/addOrder', methods=['POST'])
 def addOrder():
 	tableId = request.form['tableId']
-	order = request.form['order']
+	price = request.form['price']
+	quantity = request.form['quantity']
+	name = request.form['name']
+	print 'here'
+	order = {
+		'price': price,
+		'quantity': quantity,
+		'name': name
+	}
 	confirmation = restaurant.addOrder(tableId, order)
-	# Open the waiting for order channel
-	return {'confirmation': confirmation}
+	return jsonify({'confirmation': confirmation})
 
 @app.route('/api/table/placeOrder', methods=['POST'])
 def placeOrder():
 	tableId = request.form['tableId']
 	table = np.load(restaurant.tablesDirectory + tableId + '.npy')
+	table = table[0]
 	order = table['order']
 	triggers.triggerOrderNotification(tableId, order)
-	return {'confirmation': confirmation}
-	
+	return jsonify({'confirmation': 'done'})
+
 @app.route("/pusher/auth_presence", methods=['POST'])
 def pusher_authenticationPresence():
 	tableId = request.form['channel_name'].split('-')[-1]
@@ -81,7 +89,8 @@ def pusher_authenticationRestaurant():
 
 @app.route("/api/trigger/assistance/<tableId>", methods=['GET'])
 def pusher_triggerAssistance(tableId):
-	table = np.load(restaurant.tablesDirectory + '.npy')
+	table = np.load(restaurant.tablesDirectory + tableId + '.npy')
+	table = table[0]
 	tableNumber = table['number']
 	triggers.triggerAssitance(tableId, tableNumber)
 	return jsonify({'status': 'done'})
