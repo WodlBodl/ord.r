@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+	  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/behold_bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/font-awesome.min.css') }}">
+    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript">
+      var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+    <title>ord.r</title>
+  </head>
+  <body style="font-family:Verdana">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="zoom:100%; opacity:.95; height:70px;border-bottom:1px; padding-top:px;">
+        <div class="container ps4" style="max-width: 960px; margin: 0 auto !important; vertical-align:">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header" style="height:100%; padding-top:19px">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/dash"><img src=" " style="height: 30px; padding-left:10px;"></a>
+            </div>
+    </nav>
+
+  </body>
+</html>

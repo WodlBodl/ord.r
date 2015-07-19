@@ -5,7 +5,7 @@ Triangle(app)
 
 @app.route('/')
 def hello_world():
-    return render_template('customer/index.html', )
+    return render_template('landing_page.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
