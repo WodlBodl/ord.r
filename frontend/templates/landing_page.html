@@ -4,9 +4,9 @@
   <head>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 	  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/behold_bootstrap.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/font-awesome.min.css') }}">
-    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script type="text/javascript">
       var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
     </script>
@@ -14,14 +14,14 @@
   </head>
   <body style="background-color:white; font-family:Verdana;">
     <div class="container-fluid" style="height:100%;">
-      <div class="jumbotron" style="border-radius:0px; margin-top:150px; box-shadow:0px 0px 10px; background-color:#2196F3;">
+      <div class="jumbotron" style="border-radius:0px; margin-top:150px; box-shadow:0px 0px 10px; border-width:0px; background-color:#2196F3;">
           <h1 style="color:white; font-size:30px;">May I take your<span style="font-style:italic; font-size:45px; font-family:'Georgia';"> ord.r</span></h1>
-          <form class="form-inline">
+          <form class="form-inline" action="/menu">
             <div class="form-group">
               <input class="form-control" style="border-radius:0px;" placeholder="Enter your table code" type="text" name="fname">
             </div>
             <div class="form-group">
-              <input style="color:white; border-radius:0px; box-shadow:0px 0px 5px #1A1A1A; background-color:#EF6C00;" class="btn" type="Submit" value="SUBMIT">
+              <input style="color:white; border-radius:0px; box-shadow:0px 0px 10px #1A1A1A; background-color:#EF6C00;" class="btn" type="Submit" value="SUBMIT">
             </div>
           </form>
       </div>
