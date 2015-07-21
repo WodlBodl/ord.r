@@ -1,0 +1,32 @@
+.btn:active{
+    box-shadow: none;
+    background-color: #004D40;
+    color:white;
+}
+.btn:hover{
+    background-color: #004D40;
+    color: white;
+}
+.btn:focus{
+    box-shadow: none;
+    background-color: #004D40;
+    color: white;
+}
+.btn-header {
+    margin-right: 10px;
+}
+.btn-default{
+    color:white;
+    border-radius: 0px;
+    border-width: 0px;
+    box-shadow: 0px 0px 5px black;
+    background-color: #004D40;
+}
+a {
+    color:white;
+}
+a:hover{
+ text-decoration: none;  
+    color:white;
+}
+
