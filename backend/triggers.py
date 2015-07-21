@@ -12,7 +12,7 @@ def triggerAssitance(tableId, tableNumber):
     )
     #message to the restaurant
     cr.p.trigger(restaurant.restaurantId, 'assistance', {
-        'message':  tableNumber + ' requires assitance'
+        'message':  tableNumber + ' requires assistance'
         }
     )
 
